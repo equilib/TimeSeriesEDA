@@ -13,7 +13,7 @@
 '''
 
 import random
-import numpy as numpy
+import numpy as np
 
 from bokeh.plotting import figure
 from bokeh.io import show, output_file, output_notebook
@@ -29,7 +29,7 @@ class BokehEDAPlots:
     def __init__(
                     self, 
                     plot_width = 1700, 
-                    plot_height = 800
+                    plot_height = 800,
                     output_filename = "data.html"
                     ):
         '''
@@ -141,7 +141,7 @@ class BokehEDAPlots:
                                     y2_dict : dict,        # { legend_title : data_series }
                                     x_label = "",
                                     y1_label = "",
-                                    y1_range = (0,100),    # tuple
+                                    y1_range = (0,100),    # tuple for y1 axis range
                                     y2_label = "" ,
                                     y2_range = (0,100),    # tuple
                                     title = "",
@@ -198,8 +198,8 @@ class BokehEDAPlots:
                     color = "blue",
                     alpha = 1.0
                     ):
-    '''
-    '''
+        '''
+        '''
         # generate histogram data and edges of bins from numpy
         hist, edges = np.histogram(
                                     data, 
