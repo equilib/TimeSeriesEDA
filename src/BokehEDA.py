@@ -27,11 +27,11 @@ from random import randrange
 class BokehEDAPlots:
 
     def __init__(
-                    self, 
-                    plot_width = 1700, 
-                    plot_height = 800,
-                    output_filename = "data.html"
-                    ):
+        self, 
+        plot_width = 1700, 
+        plot_height = 800,
+        output_filename = "data.html"
+        ):
         '''
         '''
 
@@ -47,15 +47,15 @@ class BokehEDAPlots:
         output_file(self.__output_filename)
 
     def plot_scatter(
-                        self,
-                        x,
-                        y, 
-                        x_label = "",
-                        y_label = "",
-                        title = "",
-                        color = "red",
-                        alpha = 0.9
-                        ):
+        self,
+        x,
+        y, 
+        x_label = "",
+        y_label = "",
+        title = "",
+        color = "red",
+        alpha = 0.9
+        ):
         '''
         Example usage:
 
@@ -71,10 +71,10 @@ class BokehEDAPlots:
         '''
         
         fig = figure(
-                        plot_width = self.__plot_width,
-                        plot_height = self.__plot_height,
-                        title = title
-                        )
+            plot_width = self.__plot_width,
+            plot_height = self.__plot_height,
+            title = title
+            )
 
         fig.scatter(x, y, color = color, alpha = alpha)
 
@@ -90,23 +90,23 @@ class BokehEDAPlots:
 
 
     def plot_datetime_line_1yaxis(
-                                    self,
-                                    x, 
-                                    y : dict,  # { legend_title : data_series }
-                                    x_label = "",
-                                    y_label = "",
-                                    title = "",
-                                    alpha = 1.0,
-                                    ):
+        self,
+        x, 
+        y : dict,  # { legend_title : data_series }
+        x_label = "",
+        y_label = "",
+        title = "",
+        alpha = 1.0,
+        ):
         '''
         '''
 
         fig = figure(
-                        plot_width = self.__plot_width,
-                        plot_height = self.__plot_height,
-                        x_axis_type = "datetime", 
-                        title = title
-                        )
+            plot_width = self.__plot_width,
+            plot_height = self.__plot_height,
+            x_axis_type = "datetime", 
+            title = title
+            )
     
         for key in y:
 
@@ -116,13 +116,13 @@ class BokehEDAPlots:
             color = random.choice(palette[k])
 
             fig.line(
-                        x, 
-                        y[key], 
-                        alpha = alpha, 
-                        line_width = 1, 
-                        color = color, 
-                        legend = key
-                        )
+                x, 
+                y[key], 
+                alpha = alpha, 
+                line_width = 1, 
+                color = color, 
+                legend = key
+                )
             
         fig.xaxis.axis_label = x_label
         fig.yaxis.axis_label = y_label
@@ -135,31 +135,33 @@ class BokehEDAPlots:
 
 
     def plot_datetime_line_2yaxis(
-                                    self,
-                                    x, 
-                                    y1_dict : dict,        # { legend_title : data_series }
-                                    y2_dict : dict,        # { legend_title : data_series }
-                                    x_label = "",
-                                    y1_label = "",
-                                    y1_range = (0,100),    # tuple for y1 axis range
-                                    y2_label = "" ,
-                                    y2_range = (0,100),    # tuple
-                                    title = "",
-                                    alpha = 1.0
-                                    ):
+        self,
+        x, 
+        y1_dict : dict,        # { legend_title : data_series }
+        y2_dict : dict,        # { legend_title : data_series }
+        x_label = "",
+        y1_label = "",
+        y1_range = (0,100),    # tuple for y1 axis range
+        y2_label = "" ,
+        y2_range = (0,100),    # tuple
+        title = "",
+        alpha = 1.0
+        ):
     
         fig = figure(
-                        plot_width = self.__plot_width,
-                        plot_height = self.__plot_height,
-                        y_range = y1_range,
-                        x_axis_type = "datetime",
-                        title = title
-                        )
+            plot_width = self.__plot_width,
+            plot_height = self.__plot_height,
+            y_range = y1_range,
+            x_axis_type = "datetime",
+            title = title
+            )
         
         # unpack tuple of start / end range values
         start, end = y2_range
 
-        fig.extra_y_ranges = {y2_label : Range1d(start = start ,end = end)}
+        fig.extra_y_ranges = {
+            y2_label : Range1d(start = start ,end = end)
+            }
 
         fig.add_layout(LinearAxis(y_range_name = y2_label, axis_label = y2_label), 'right')
         
@@ -191,13 +193,13 @@ class BokehEDAPlots:
 
     
     def plot_hist(
-                    self,
-                    data, 
-                    bins,
-                    title = "",
-                    color = "blue",
-                    alpha = 1.0
-                    ):
+        self,
+        data, 
+        bins,
+        title = "",
+        color = "blue",
+        alpha = 1.0
+        ):
         '''
         '''
         # generate histogram data and edges of bins from numpy
@@ -208,10 +210,10 @@ class BokehEDAPlots:
                                     )
         
         fig = figure(
-                        title = title ,
-                        tools = '',
-                        background_fill_color = "#fafafa"
-                        )
+            title = title ,
+            tools = '',
+            background_fill_color = "#fafafa"
+            )
         
         fig.quad(
                 top = hist, 

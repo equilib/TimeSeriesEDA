@@ -16,9 +16,9 @@ import seaborn as sns
 class MatplotlibEDAPlots:
 
     def __init__(
-                    self,
-                    figure_fname = None
-                ):
+        self,
+        figure_fname = None 
+        ):
         
         if figure_fname != None:
             self.__figure_fname = figure_fname
@@ -26,11 +26,11 @@ class MatplotlibEDAPlots:
     # ------------------------------------------------------------------------------------------------------------
     # Helper Functions
     def saveFig(
-                self, 
-                plt, 
-                fig, 
-                fname
-                ):
+        self, 
+        plt, 
+        fig, 
+        fname 
+        ):
         '''
         '''
         if fname != None:
@@ -40,11 +40,11 @@ class MatplotlibEDAPlots:
         return
     
     def plotLabels( 
-                    self,
-                    xlabel,
-                    ylabel,
-                    title 
-                    ):
+        self,
+        xlabel,
+        ylabel,
+        title 
+        ):
         '''
         '''
         plt.xlabel( xlabel )
@@ -55,25 +55,28 @@ class MatplotlibEDAPlots:
     # Plot Wrapper Functions
 
     def plotScatter(
-                    self,
-                    xSeries,
-                    ySeries,
-                    xlabel=None,
-                    ylabel=None,
-                    title=None,
-                    xlim = 20,
-                    ylim = 10,
-                    fname = None
-                ):
+        self,
+        xSeries,
+        ySeries,
+        xlabel=None,
+        ylabel=None,
+        title=None,
+        xlim = 20,
+        ylim = 10,
+        fname = None 
+        ):
 
         fig = plt.figure( figsize=(xlim,ylim) )
         
         plt.scatter( xSeries, ySeries, marker='.' )
-        plotLabels( xlabel, ylabel, title )
+        self.plotLabels( xlabel, ylabel, title )
         
-        saveFig(plt, fig, fname)
+        self.saveFig(plt, fig, fname)
 
-    def empiricalCDF( series ):
+    def empiricalCDF(
+        self,
+        series 
+        ):
         '''
         '''
         n = series.size
@@ -82,29 +85,29 @@ class MatplotlibEDAPlots:
         return x,y
 
     def plotEmpiricalCDF( 
-                            self,
-                            xSeries,
-                            ySeries,
-                            xlabel=None,
-                            ylabel=None,
-                            title=None, 
-                            xlim = 20,
-                            ylim = 10,
-                            fname = None
-                        ):
+        self,
+        xSeries,
+        ySeries,
+        xlabel=None,
+        ylabel=None,
+        title=None, 
+        xlim = 20,
+        ylim = 10,
+        fname = None 
+        ):
         '''
         '''
         fig = plt.figure( figsize=( xlim, ylim) )
         
         plt.plot( xSeries, ySeries, marker='.', linestyle='none' )
-        plotLabels( xlabel, ylabel, title )
+        self.plotLabels( xlabel, ylabel, title )
         
-        saveFig(plt, fig, fname)
+        self.saveFig(plt, fig, fname)
 
     def __pivotTimeSeries(
-                            self,
-                            series
-                        ):
+        self,
+        series 
+        ):
         '''
         '''
         time = pd.DataFrame([t.time() for t in series.index], index=series.index, columns=['time'])
@@ -116,16 +119,16 @@ class MatplotlibEDAPlots:
         return pivot_df
 
     def plotPivotTimeSeries(
-                                self, 
-                                series,
-                                xlabel=None,
-                                ylabel=None,
-                                title=None, 
-                                color = 'b',
-                                xlim = 20,
-                                ylim = 10, 
-                                fname = None
-                        ):
+        self, 
+        series,
+        xlabel=None,
+        ylabel=None,
+        title=None, 
+        color = 'b',
+        xlim = 20,
+        ylim = 10, 
+        fname = None
+        ):
         '''
         '''
         # pivot series data(profile plots)
@@ -133,19 +136,19 @@ class MatplotlibEDAPlots:
         # plot pivoted series - 
         pivot_df.T.plot(legend=False,figsize=(xlim,ylim), color=color, alpha=0.4)
         #pivot_df.T.plot(legend=False, color=color, alpha=0.4)
-        plotLabels( xlabel, ylabel, title )
+        self.plotLabels( xlabel, ylabel, title )
 
     def plotJointDist( 
-                        self,
-                        xSeries,
-                        ySeries,
-                        xlim = 20,
-                        ylim = 10,
-                        statFunc = None,
-                        fname = None
-                    ):
+        self,
+        xSeries,
+        ySeries,
+        xlim = 20,
+        ylim = 10,
+        statFunc = None,
+        fname = None
+        ):
         '''
         plotJointDist - plots the joint distribution of two series' of data
         '''
         
-        plot = sns.jointplot( xSeries, ySeries, kind='kde', height=10, space=1, stat_func = statFunc )
+        sns.jointplot( xSeries, ySeries, kind='kde', height=10, space=1, stat_func = statFunc )
