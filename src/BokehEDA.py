@@ -44,7 +44,7 @@ class BokehEDAPlots:
             Writes plot data to HTML file
         
         '''
-
+        output_file(self.__output_filename)
 
     def plot_scatter(
                         self,
@@ -112,7 +112,7 @@ class BokehEDAPlots:
 
             k = random.choice( list(palette.keys()) )
 
-            # choose random color from Category29 palette
+            # choose random color from Category20 palette
             color = random.choice(palette[k])
 
             fig.line(
