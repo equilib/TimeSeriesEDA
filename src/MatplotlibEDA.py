@@ -101,9 +101,9 @@ class MatplotlibEDAPlots:
         
         saveFig(plt, fig, fname)
 
-    def pivotTimeSeries(
-                        self,
-                        series
+    def __pivotTimeSeries(
+                            self,
+                            series
                         ):
         '''
         '''
@@ -117,7 +117,7 @@ class MatplotlibEDAPlots:
 
     def plotPivotTimeSeries(
                                 self, 
-                                pivot_df,
+                                series,
                                 xlabel=None,
                                 ylabel=None,
                                 title=None, 
@@ -128,7 +128,9 @@ class MatplotlibEDAPlots:
                         ):
         '''
         '''
-        
+        # pivot series data(profile plots)
+        pivot_df = self.__pivotTimeSeries(series)
+        # plot pivoted series - 
         pivot_df.T.plot(legend=False,figsize=(xlim,ylim), color=color, alpha=0.4)
         #pivot_df.T.plot(legend=False, color=color, alpha=0.4)
         plotLabels( xlabel, ylabel, title )
