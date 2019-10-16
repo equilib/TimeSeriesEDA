@@ -5,8 +5,8 @@
 # @version 0.0.2
 # @date 2019-04-10
 # 
-# @TODO: 1. Update 
-#        2. Test
+# @TODO: 1. Update and test all functions
+#        2. Add additional functionality
 
 import numpy as np
 import pandas as pd
