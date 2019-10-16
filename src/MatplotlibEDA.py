@@ -31,13 +31,13 @@ class MatplotlibEDAPlots:
                 fig, 
                 fname
                 ):
-    '''
-    '''
-    if fname != None:
-        fig.savefig(fname)
-        plt.close(fig)
-        
-    return
+        '''
+        '''
+        if fname != None:
+            fig.savefig(fname)
+            plt.close(fig)
+            
+        return
     
     def plotLabels( 
                     self,
